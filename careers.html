@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Careers — Atlas Concrete Works</title>
+<style>
+/* ============================================================
+   ATLAS CONCRETE WORKS — shared site stylesheet
+   Extracted from landing page. All pages consume this.
+   ============================================================ */
+:root {
+  --paper: #F3EEE0;
+  --paper-2: #EBE4D2;
+  --paper-3: #E0D8C2;
+  --ink: #1C1915;
+  --ink-soft: #3A342C;
+  --ink-mute: #7A7265;
+  --accent: #E8551F;
+  --accent-ink: #B8421A;
+  --rule: #1C1915;
+  --nav-h: 64px;
+  --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+
+/* spec-sheet frame */
+body::before {
+  content: ""; position: fixed; inset: 12px; border: 1px solid rgba(28,25,21,0.08);
+  pointer-events: none; z-index: 40;
+}
+@media (max-width: 600px) { body::before { inset: 6px; } }
+
+/* ---------- NAV (inverted dark) ---------- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  background: var(--ink);
+  border-bottom: 1px solid rgba(243,238,224,0.08);
+  z-index: 50;
+  color: var(--paper);
+}
+.wordmark {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+  color: var(--paper);
+}
+.wordmark::before {
+  content: ""; display: inline-block;
+  width: 10px; height: 10px; background: var(--accent);
+}
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-links { display: flex; gap: 22px; }
+.nav-links a {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(243,238,224,0.68);
+  transition: color 160ms ease;
+  position: relative;
+  padding: 4px 0;
+}
+.nav-links a:hover { color: var(--paper); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 2px; background: var(--accent);
+}
+.cta {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 9px 16px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+  border-radius: 999px;
+  transition: background 160ms ease, color 160ms ease;
+  cursor: pointer;
+}
+.cta:hover { background: var(--accent); color: var(--paper); }
+.cta.solid { background: var(--accent); color: var(--paper); }
+.cta.solid:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+.cta.ghost-ink { border-color: var(--ink); color: var(--ink); }
+.cta.ghost-ink:hover { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 820px) {
+  .nav-links { display: none; }
+}
+
+/* nav sits above a spacer so content doesn't slip under */
+.nav-spacer { height: var(--nav-h); }
+
+/* ---------- SECTION SCAFFOLDING ---------- */
+.wrap { max-width: 1280px; margin: 0 auto; }
+.wrap-narrow { max-width: 960px; margin: 0 auto; }
+
+.section {
+  padding: 120px 48px;
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+.section.tight { padding: 72px 48px; }
+.section.paper-2 { background: var(--paper-2); }
+.section.ink { background: var(--ink); color: var(--paper); }
+.section.ink .section-label .title { color: var(--paper); }
+.section.ink .section-label .rule { background: var(--paper); }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 48px 0;
+  display: flex; align-items: baseline; gap: 14px;
+}
+.section-label .num { color: var(--accent); font-weight: 600; }
+.section-label .title { color: var(--ink); }
+.section-label .rule { flex: 1; height: 1px; background: var(--ink); opacity: 0.25; }
+.section-label .meta { color: var(--ink-mute); font-weight: 600; }
+
+@media (max-width: 720px) {
+  .section { padding: 80px 24px; }
+  .section.tight { padding: 56px 24px; }
+}
+
+/* ---------- PAGE HEADER (hero strip for sub-pages) ---------- */
+.page-header {
+  padding: 140px 48px 80px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.page-header .crumbs {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-mute);
+  display: flex; gap: 10px; align-items: center;
+  margin-bottom: 28px;
+}
+.page-header .crumbs a:hover { color: var(--accent); }
+.page-header .crumbs .sep::before { content: "/"; color: rgba(28,25,21,0.3); }
+.page-header h1 {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.02; letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0 0 24px 0;
+  color: var(--ink);
+  max-width: 18ch;
+}
+.page-header h1 .slash { color: var(--accent); }
+.page-header .lede {
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.55; color: var(--ink-soft);
+  max-width: 58ch; margin: 0;
+}
+.page-header .eyebrow {
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 24px;
+}
+.page-header .eyebrow::before {
+  content: ""; display: inline-block;
+  width: 22px; height: 1px; background: var(--ink-soft);
+}
+
+@media (max-width: 720px) {
+  .page-header { padding: 110px 24px 56px; }
+}
+
+/* ---------- GRID UTILITIES ---------- */
+.grid-4, .grid-3, .grid-2 {
+  display: grid; gap: 0;
+  border-top: 1px solid var(--rule); border-left: 1px solid var(--rule);
+}
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.cell {
+  padding: 32px 28px 36px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 200px;
+  position: relative;
+}
+.cell.tall { min-height: 280px; }
+.cell.has-hover { transition: background 180ms ease; cursor: pointer; }
+.cell.has-hover:hover { background: var(--paper-2); }
+.cell .idx {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.cell h3 {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 18px; letter-spacing: 0.02em; text-transform: uppercase;
+  margin: 0; color: var(--ink);
+}
+.cell p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+.cell .cell-arrow {
+  font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent);
+  margin-top: auto;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.cell .cell-arrow::after {
+  content: "→"; transition: transform 180ms ease;
+}
+.cell.has-hover:hover .cell-arrow::after { transform: translateX(4px); }
+
+@media (max-width: 960px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+/* ---------- TWO-COL ---------- */
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+}
+.two-col.lead-right { grid-template-columns: 1fr 2fr; }
+.two-col.narrow-right { grid-template-columns: 2fr 1fr; }
+@media (max-width: 760px) {
+  .two-col, .two-col.lead-right, .two-col.narrow-right { grid-template-columns: 1fr; gap: 28px; }
+}
+
+.lead-quote {
+  font-family: var(--mono);
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.3; letter-spacing: -0.005em;
+  color: var(--ink); margin: 0;
+}
+.lead-quote .slash { color: var(--accent); }
+
+/* ---------- NUMBERED LIST ---------- */
+.numlist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px; }
+.numlist li {
+  display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: baseline;
+  padding-bottom: 20px; border-bottom: 1px solid rgba(28,25,21,0.12);
+}
+.numlist li:last-child { border-bottom: 0; }
+.numlist .n {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  color: var(--accent);
+}
+.numlist .body { display: flex; flex-direction: column; gap: 4px; }
+.numlist .body strong {
+  font-family: var(--mono); font-weight: 600;
+  font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ink);
+}
+.numlist .body span { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+
+/* ---------- META / SPEC ROWS ---------- */
+.spec {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-mute);
+  display: flex; flex-direction: column; gap: 2px;
+  border-top: 1px solid var(--ink);
+}
+.spec .row {
+  display: flex; justify-content: space-between; gap: 12px;
+  border-bottom: 1px dashed rgba(28,25,21,0.22); padding: 10px 0;
+}
+.spec .row span:last-child { color: var(--ink); }
+
+/* ---------- TAGS ---------- */
+.tag-pill {
+  display: inline-block;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent); padding: 4px 9px; border-radius: 2px;
+}
+.tag-pill.ink { color: var(--ink); border-color: var(--ink); }
+.tag-pill.mute { color: var(--ink-mute); border-color: rgba(28,25,21,0.25); }
+
+/* ---------- BODY COPY ---------- */
+.prose p { font-size: 16px; line-height: 1.65; color: var(--ink-soft); margin: 0 0 14px 0; max-width: 64ch; }
+.prose p.large { font-size: 18px; line-height: 1.55; color: var(--ink); }
+.prose h2 {
+  font-family: var(--mono); font-weight: 600;
+  font-size: 22px; letter-spacing: 0.02em; text-transform: uppercase;
+  margin: 40px 0 16px 0; color: var(--ink);
+}
+.prose h3 {
+  font-family: var(--mono); font-weight: 600;
+  font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+  margin: 28px 0 10px 0; color: var(--ink);
+}
+
+/* ---------- PLACEHOLDER IMAGE ---------- */
+.ph {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(28,25,21,0.08) 0 1px,
+      transparent 1px 10px
+    ),
+    var(--paper-2);
+  border: 1px solid rgba(28,25,21,0.25);
+  display: flex; align-items: flex-end; justify-content: flex-start;
+  padding: 14px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-soft);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.ph.tall { aspect-ratio: 3 / 4; }
+.ph.wide { aspect-ratio: 16 / 9; }
+.ph.sq { aspect-ratio: 1 / 1; }
+.ph .ph-label {
+  background: var(--paper);
+  padding: 4px 8px;
+  border: 1px solid rgba(28,25,21,0.25);
+}
+.ph.dark {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(243,238,224,0.10) 0 1px,
+      transparent 1px 10px
+    ),
+    var(--ink);
+  color: rgba(243,238,224,0.7);
+  border-color: rgba(243,238,224,0.2);
+}
+.ph.dark .ph-label {
+  background: var(--ink);
+  color: rgba(243,238,224,0.85);
+  border-color: rgba(243,238,224,0.2);
+}
+
+/* ---------- CTA BANDS ---------- */
+.cta-band {
+  padding: 88px 48px;
+  border-top: 1px solid var(--rule);
+  background: var(--ink);
+  color: var(--paper);
+  display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: center;
+}
+.cta-band h2 {
+  font-family: var(--mono); font-weight: 600;
+  font-size: clamp(28px, 3vw, 44px); line-height: 1.1;
+  letter-spacing: -0.005em; text-transform: uppercase;
+  margin: 0; max-width: 20ch;
+}
+.cta-band h2 .slash { color: var(--accent); }
+.cta-band .cta { border-color: var(--accent); color: var(--accent); }
+.cta-band .cta:hover { background: var(--accent); color: var(--ink); }
+.cta-band .cta.solid { background: var(--accent); color: var(--ink); }
+.cta-band .cta.solid:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.cta-band .actions { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; }
+@media (max-width: 720px) { .cta-band { grid-template-columns: 1fr; padding: 64px 24px; } .cta-band .actions { justify-content: flex-start; } }
+
+/* ---------- FOOTER ---------- */
+footer.site-foot {
+  border-top: 1px solid var(--rule);
+  padding: 64px 48px 40px;
+  background: var(--paper-2);
+}
+.foot {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 48px;
+}
+.foot h4 {
+  font-family: var(--mono); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-mute); margin: 0 0 14px 0;
+}
+.foot p, .foot a { font-size: 14px; color: var(--ink); margin: 4px 0; line-height: 1.5; display: block; }
+.foot a:hover { color: var(--accent); }
+.foot .wordmark { margin-bottom: 14px; color: var(--ink); }
+.foot .wordmark::before { background: var(--accent); }
+.foot .blurb { font-size: 13px; color: var(--ink-soft); max-width: 34ch; line-height: 1.55; }
+.foot-bottom {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding-top: 24px; border-top: 1px solid rgba(28,25,21,0.18);
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+@media (max-width: 820px) {
+  .foot { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .foot { grid-template-columns: 1fr; }
+  .foot-bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
+  footer.site-foot { padding: 56px 24px 32px; }
+}
+
+/* ---------- FORMS ---------- */
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form .full { grid-column: 1 / -1; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.field input, .field select, .field textarea {
+  font-family: var(--sans); font-size: 15px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 1px solid rgba(28,25,21,0.3);
+  color: var(--ink);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--accent);
+  background: #FFFDF7;
+}
+.field textarea { min-height: 140px; resize: vertical; font-family: var(--sans); }
+.field .hint { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); }
+.field .err { color: var(--accent); font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+
+@media (max-width: 720px) { .form { grid-template-columns: 1fr; } }
+
+/* ---------- LINK ---------- */
+.textlink {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); display: inline-flex; gap: 8px; align-items: center;
+  border-bottom: 1px solid transparent;
+}
+.textlink::after { content: "→"; transition: transform 180ms ease; }
+.textlink:hover::after { transform: translateX(4px); }
+
+/* ---------- BIG NUMBERS ---------- */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.stat { padding: 36px 28px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 8px; min-height: 180px; justify-content: space-between; }
+.stat .num {
+  font-family: var(--mono); font-weight: 600;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1; letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.stat .num .unit { font-size: 0.45em; color: var(--ink-mute); margin-left: 6px; letter-spacing: 0.02em; }
+.stat .k {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+@media (max-width: 960px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .stats { grid-template-columns: 1fr; } }
+
+/* ---------- TABLE ---------- */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th, .tbl td { padding: 14px 14px; text-align: left; border-bottom: 1px solid rgba(28,25,21,0.15); }
+.tbl th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; }
+.tbl td { color: var(--ink); vertical-align: top; }
+.tbl td.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-soft); }
+
+/* ---------- TWEAKS PANEL ---------- */
+.tweaks-panel {
+  position: fixed; bottom: 20px; right: 20px; z-index: 90;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 16px 18px 18px;
+  width: 260px;
+  font-family: var(--mono);
+  box-shadow: 0 12px 40px rgba(28,25,21,0.18);
+  display: none;
+}
+.tweaks-panel.on { display: block; }
+.tweaks-panel h5 {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-mute); margin: 0 0 12px 0; font-weight: 600;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.tweaks-panel .tw-group { margin-bottom: 14px; }
+.tweaks-panel .tw-label {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink); display: block; margin-bottom: 6px;
+}
+.tweaks-panel .swatches { display: flex; gap: 6px; }
+.tweaks-panel .sw {
+  width: 22px; height: 22px; border: 1px solid var(--ink); cursor: pointer;
+  border-radius: 0;
+  padding: 0;
+}
+.tweaks-panel .sw.active { outline: 2px solid var(--ink); outline-offset: 2px; }
+.tweaks-panel select {
+  width: 100%; padding: 6px 8px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--ink); border-radius: 0;
+}
+
+</style>
+<style>
+  .job-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 24px; align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(28,25,21,0.15);
+  }
+  .job-row:first-child { border-top: 1px solid var(--ink); }
+  .job-row .title {
+    font-family: var(--mono); font-weight: 600;
+    font-size: 18px; letter-spacing: 0.02em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .job-row .meta {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .job-row .apply {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex; gap: 8px; align-items: center;
+  }
+  .job-row .apply::after { content: "→"; transition: transform 180ms ease; }
+  .job-row:hover .apply::after { transform: translateX(4px); }
+  @media (max-width: 720px) {
+    .job-row { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div data-nav></div>
+
+<main>
+  <section class="page-header">
+    <div class="wrap">
+      <div class="crumbs">
+        <a href="index.html">Atlas</a>
+        <span class="sep"></span>
+        <span>Careers</span>
+      </div>
+      <span class="eyebrow">We hire for the long haul</span>
+      <h1>Rough hands, <span class="slash">steady work.</span></h1>
+      <p class="lede">Our average crew tenure is eleven years. That's not an accident — it's how we've built this shop. If you know concrete, show up early, and care what the wall looks like after strip, we probably want to talk.</p>
+    </div>
+  </section>
+
+  <section class="section" style="border-top: 0;">
+    <div class="wrap">
+      <h2 class="section-label">
+        <span class="num">01</span>
+        <span class="title">Open roles</span>
+        <span class="rule"></span>
+        <span class="meta">05 open</span>
+      </h2>
+
+      <div class="jobs">
+        <a class="job-row" href="#apply">
+          <span class="title">Lead Form Carpenter</span>
+          <span class="meta">Oakland · Full-time</span>
+          <span class="meta">10+ yrs exp</span>
+          <span class="apply">Apply</span>
+        </a>
+        <a class="job-row" href="#apply">
+          <span class="title">Finisher · Architectural</span>
+          <span class="meta">Oakland · Full-time</span>
+          <span class="meta">5+ yrs exp</span>
+          <span class="apply">Apply</span>
+        </a>
+        <a class="job-row" href="#apply">
+          <span class="title">Concrete Laborer</span>
+          <span class="meta">Oakland · Full-time</span>
+          <span class="meta">Entry · 0–2 yrs</span>
+          <span class="apply">Apply</span>
+        </a>
+        <a class="job-row" href="#apply">
+          <span class="title">Pump Operator (CDL)</span>
+          <span class="meta">Oakland · Full-time</span>
+          <span class="meta">3+ yrs · Class B</span>
+          <span class="apply">Apply</span>
+        </a>
+        <a class="job-row" href="#apply">
+          <span class="title">Project Estimator</span>
+          <span class="meta">Oakland · Hybrid</span>
+          <span class="meta">5+ yrs · CSI read</span>
+          <span class="apply">Apply</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper-2">
+    <div class="wrap">
+      <h2 class="section-label">
+        <span class="num">02</span>
+        <span class="title">What we offer</span>
+        <span class="rule"></span>
+      </h2>
+      <div class="grid-3">
+        <div class="cell" style="background:var(--paper-2)">
+          <span class="idx">01 /</span>
+          <h3>Above-scale pay</h3>
+          <p>We pay above union scale for all field trades, with annual reviews tied to pour-day performance, not seat time.</p>
+        </div>
+        <div class="cell" style="background:var(--paper-2)">
+          <span class="idx">02 /</span>
+          <h3>Full medical</h3>
+          <p>Medical, dental, vision — 100% covered for employees, 75% for families. Effective day 31.</p>
+        </div>
+        <div class="cell" style="background:var(--paper-2)">
+          <span class="idx">03 /</span>
+          <h3>401(k) with match</h3>
+          <p>4% employer match, vested at year two. We'll sit with you and actually help you set it up.</p>
+        </div>
+        <div class="cell" style="background:var(--paper-2)">
+          <span class="idx">04 /</span>
+          <h3>Tools &amp; boots</h3>
+          <p>$600 annual tool stipend, boots covered. We provide PPE; you bring the skill.</p>
+        </div>
+        <div class="cell" style="background:var(--paper-2)">
+          <span class="idx">05 /</span>
+          <h3>Real training</h3>
+          <p>Apprentice path with paid lead-time under veteran carpenters. We'd rather grow a journeyman than poach one.</p>
+        </div>
+        <div class="cell" style="background:var(--paper-2)">
+          <span class="idx">06 /</span>
+          <h3>Home by dinner</h3>
+          <p>Pour days start early so they end early. Most crews off the site by 3:30. We don't do 12-hour days as a lifestyle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="apply">
+    <div class="wrap-narrow">
+      <h2 class="section-label">
+        <span class="num">03</span>
+        <span class="title">Apply</span>
+        <span class="rule"></span>
+      </h2>
+      <form class="form" onsubmit="event.preventDefault(); this.innerHTML='<div class=&quot;full&quot; style=&quot;padding:40px;border:1px solid var(--ink)&quot;><span class=&quot;tag-pill&quot;>Received</span><h3 style=&quot;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.02em;font-size:22px;margin:16px 0 8px&quot;>Thanks — we&apos;ll be in touch.</h3><p style=&quot;margin:0;color:var(--ink-soft)&quot;>We review every application. If there&apos;s a match, we&apos;ll call within a week.</p></div>';">
+        <div class="field">
+          <label for="cname">Your name</label>
+          <input type="text" id="cname" required>
+        </div>
+        <div class="field">
+          <label for="crole">Role you're applying for</label>
+          <select id="crole">
+            <option>Lead Form Carpenter</option>
+            <option>Finisher · Architectural</option>
+            <option>Concrete Laborer</option>
+            <option>Pump Operator (CDL)</option>
+            <option>Project Estimator</option>
+            <option>General / other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cemail">Email</label>
+          <input type="email" id="cemail" required>
+        </div>
+        <div class="field">
+          <label for="cphone">Phone</label>
+          <input type="tel" id="cphone">
+        </div>
+        <div class="field full">
+          <label for="cexp">Years in the trade</label>
+          <input type="text" id="cexp" placeholder="e.g. 8 yrs · mostly residential foundations">
+        </div>
+        <div class="field full">
+          <label for="cmsg">A few lines about you</label>
+          <textarea id="cmsg" placeholder="What's the best wall you've poured? We'd rather hear about one job than read a full resume."></textarea>
+        </div>
+        <div class="field full">
+          <label>Resume (optional)</label>
+          <input type="file">
+        </div>
+        <div class="full" style="display:flex; justify-content: flex-end; gap: 16px;">
+          <button type="submit" class="cta solid">Send application</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div data-footer></div>
+<script>
+/* Shared nav + footer HTML, injected into every page */
+(function () {
+  const NAV_HTML = `
+    <header class="nav" id="nav">
+      <a class="wordmark" href="index.html">Atlas Concrete Works</a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="services.html">Services</a>
+          <a href="projects.html">Projects</a>
+          <a href="process.html">Process</a>
+          <a href="about.html">About</a>
+          <a href="careers.html">Careers</a>
+        </nav>
+        <a class="cta" href="contact.html">Get a quote</a>
+      </div>
+    </header>
+    <div class="nav-spacer"></div>
+  `;
+
+  const FOOTER_HTML = `
+    <section class="cta-band" data-cta-band>
+      <h2>Ready to pour? <span class="slash">Let's get on the schedule.</span></h2>
+      <div class="actions">
+        <a class="cta solid" href="contact.html">Request a quote</a>
+        <a class="cta" href="projects.html" style="border-color:var(--paper);color:var(--paper)">See projects</a>
+      </div>
+    </section>
+    <footer class="site-foot">
+      <div class="wrap">
+        <div class="foot">
+          <div>
+            <a class="wordmark" href="index.html">Atlas Concrete Works</a>
+            <p class="blurb">Cast-in-place foundations, structural walls, and architectural flatwork. One crew from formwork through finish — Bay Area since 1998.</p>
+          </div>
+          <div>
+            <h4>Sitemap</h4>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="projects.html">Projects</a>
+            <a href="process.html">Process</a>
+            <a href="about.html">About</a>
+            <a href="careers.html">Careers</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="tel:+15105550147">(510) 555-0147</a>
+            <a href="mailto:estimates@atlasconcreteworks.example">estimates@<br>atlasconcreteworks.example</a>
+            <p>3120 Industrial Way<br>Oakland, CA 94601</p>
+          </div>
+          <div>
+            <h4>Hours</h4>
+            <p>Mon–Fri · 6:30a–4:30p<br>Sat · by appointment<br>24/7 · emergency pours</p>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 Atlas Concrete Works · Fictional sample site</span>
+          <span>CSLB · License C-8 · #000000</span>
+        </div>
+      </div>
+    </footer>
+  `;
+
+  // Only inject if a marker is present — avoids doubling up
+  const navMount = document.querySelector('[data-nav]');
+  if (navMount) navMount.outerHTML = NAV_HTML;
+
+  const footMount = document.querySelector('[data-footer]');
+  if (footMount) {
+    // allow pages to opt out of the CTA band
+    let html = FOOTER_HTML;
+    if (footMount.hasAttribute('data-no-cta')) {
+      html = FOOTER_HTML.replace(/<section class="cta-band"[\s\S]*?<\/section>/, '');
+    }
+    footMount.outerHTML = html;
+  }
+})();
+
+</script>
+<script>
+/* Shared site JS: nav active state, tweaks panel, small interactions */
+(function () {
+  // ---- Active nav link ----
+  const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = (a.getAttribute('href') || '').toLowerCase();
+    if (!href) return;
+    const base = href.split('/').pop();
+    if (base === path || (path === '' && base === 'index.html')) {
+      a.classList.add('active');
+    }
+    // services pages highlight Services
+    if (path.startsWith('service-') && href.endsWith('services.html')) a.classList.add('active');
+    if (path.startsWith('project-') && href.endsWith('projects.html')) a.classList.add('active');
+  });
+
+  // ---- Tweaks: read persisted values ----
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#E8551F",
+    "paperTone": "warm",
+    "navStyle": "dark"
+  }/*EDITMODE-END*/;
+
+  const stored = (() => {
+    try { return JSON.parse(localStorage.getItem('atlas-tweaks') || '{}'); } catch (_) { return {}; }
+  })();
+  const current = Object.assign({}, TWEAK_DEFAULTS, stored);
+
+  const PAPER_TONES = {
+    warm:    { paper: '#F3EEE0', paper2: '#EBE4D2', paper3: '#E0D8C2' },
+    neutral: { paper: '#F0EEEA', paper2: '#E6E3DD', paper3: '#DAD6CE' },
+    cool:    { paper: '#EDEEEC', paper2: '#E2E4E0', paper3: '#D4D7D1' },
+  };
+
+  function apply(t) {
+    const r = document.documentElement.style;
+    r.setProperty('--accent', t.accent);
+    // derive a darker accent-ink roughly
+    r.setProperty('--accent-ink', shade(t.accent, -0.2));
+    const tone = PAPER_TONES[t.paperTone] || PAPER_TONES.warm;
+    r.setProperty('--paper', tone.paper);
+    r.setProperty('--paper-2', tone.paper2);
+    r.setProperty('--paper-3', tone.paper3);
+    // nav style
+    const nav = document.querySelector('.nav');
+    if (nav) {
+      nav.dataset.style = t.navStyle;
+      if (t.navStyle === 'light') {
+        nav.style.background = 'rgba(243,238,224,0.88)';
+        nav.style.color = 'var(--ink)';
+        nav.style.backdropFilter = 'blur(14px)';
+        nav.style.borderBottomColor = 'rgba(28,25,21,0.12)';
+        nav.querySelectorAll('.nav-links a').forEach(a => a.style.color = 'var(--ink-soft)');
+        const wm = nav.querySelector('.wordmark'); if (wm) wm.style.color = 'var(--ink)';
+      } else {
+        nav.style.background = ''; nav.style.color = ''; nav.style.backdropFilter = '';
+        nav.style.borderBottomColor = '';
+        nav.querySelectorAll('.nav-links a').forEach(a => a.style.color = '');
+        const wm = nav.querySelector('.wordmark'); if (wm) wm.style.color = '';
+      }
+    }
+  }
+
+  function shade(hex, pct) {
+    // expand short hex
+    let h = hex.replace('#', '');
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    const num = parseInt(h, 16);
+    let r = (num >> 16) & 255, g = (num >> 8) & 255, b = num & 255;
+    r = Math.round(Math.max(0, Math.min(255, r + r * pct)));
+    g = Math.round(Math.max(0, Math.min(255, g + g * pct)));
+    b = Math.round(Math.max(0, Math.min(255, b + b * pct)));
+    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+  }
+
+  apply(current);
+
+  // ---- Tweaks host protocol ----
+  let tweaksOn = false;
+  const panel = document.createElement('div');
+  panel.className = 'tweaks-panel';
+  panel.innerHTML = `
+    <h5>Tweaks <span style="color:var(--accent)">●</span></h5>
+    <div class="tw-group">
+      <span class="tw-label">Accent</span>
+      <div class="swatches" data-k="accent">
+        <button class="sw" data-v="#E8551F" style="background:#E8551F" title="Orange (default)"></button>
+        <button class="sw" data-v="#B8421A" style="background:#B8421A" title="Burnt"></button>
+        <button class="sw" data-v="#2E6F5E" style="background:#2E6F5E" title="Moss"></button>
+        <button class="sw" data-v="#2B4C7E" style="background:#2B4C7E" title="Blueprint"></button>
+        <button class="sw" data-v="#C9A227" style="background:#C9A227" title="Brass"></button>
+        <button class="sw" data-v="#1C1915" style="background:#1C1915" title="Ink"></button>
+      </div>
+    </div>
+    <div class="tw-group">
+      <span class="tw-label">Paper tone</span>
+      <select data-k="paperTone">
+        <option value="warm">Warm</option>
+        <option value="neutral">Neutral</option>
+        <option value="cool">Cool</option>
+      </select>
+    </div>
+    <div class="tw-group">
+      <span class="tw-label">Nav style</span>
+      <select data-k="navStyle">
+        <option value="dark">Inverted dark</option>
+        <option value="light">Light glass</option>
+      </select>
+    </div>
+  `;
+  document.body.appendChild(panel);
+
+  function syncPanel() {
+    panel.querySelectorAll('[data-k="accent"] .sw').forEach(b => {
+      b.classList.toggle('active', b.dataset.v.toLowerCase() === current.accent.toLowerCase());
+    });
+    panel.querySelector('[data-k="paperTone"]').value = current.paperTone;
+    panel.querySelector('[data-k="navStyle"]').value = current.navStyle;
+  }
+  syncPanel();
+
+  function persist() {
+    try { localStorage.setItem('atlas-tweaks', JSON.stringify(current)); } catch (_) {}
+    try {
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: current }, '*');
+    } catch (_) {}
+  }
+
+  panel.querySelectorAll('[data-k="accent"] .sw').forEach(b => {
+    b.addEventListener('click', () => {
+      current.accent = b.dataset.v;
+      apply(current); syncPanel(); persist();
+    });
+  });
+  panel.querySelector('[data-k="paperTone"]').addEventListener('change', e => {
+    current.paperTone = e.target.value; apply(current); persist();
+  });
+  panel.querySelector('[data-k="navStyle"]').addEventListener('change', e => {
+    current.navStyle = e.target.value; apply(current); persist();
+  });
+
+  // ---- Tweaks: register listener BEFORE announcing availability ----
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') { tweaksOn = true; panel.classList.add('on'); }
+    if (d.type === '__deactivate_edit_mode') { tweaksOn = false; panel.classList.remove('on'); }
+  });
+  try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (_) {}
+})();
+
+</script>
+
+<script>
+/* preview-token preserver: keep ?t=... across same-page relative nav */
+(function () {
+  var q = location.search;
+  if (!q || q.indexOf('t=') === -1) return;
+  function fix() {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var h = a.getAttribute('href');
+      if (!h) return;
+      if (/^(https?:|mailto:|tel:|#|javascript:)/i.test(h)) return;
+      if (h.indexOf('?') !== -1) return;
+      if (!/\.html(#|$)/i.test(h)) return;
+      var hash = '';
+      var idx = h.indexOf('#');
+      if (idx !== -1) { hash = h.slice(idx); h = h.slice(0, idx); }
+      a.setAttribute('href', h + q + hash);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fix);
+  } else { fix(); }
+  // also rerun after chrome.js injects nav/footer
+  var mo = new MutationObserver(fix);
+  mo.observe(document.documentElement, { childList: true, subtree: true });
+  setTimeout(function () { mo.disconnect(); }, 2000);
+})();
+</script>
+
+</body>
+</html>
