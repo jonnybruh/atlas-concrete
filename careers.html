@@ -524,6 +524,8 @@ footer.site-foot {
     .job-row { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; }
   }
 </style>
+  <link rel="stylesheet" href="mobile.css">
+  <script defer src="nav.js"></script>
 </head>
 <body>
 
@@ -681,86 +683,6 @@ footer.site-foot {
 </main>
 
 <div data-footer></div>
-<script>
-/* Shared nav + footer HTML, injected into every page */
-(function () {
-  const NAV_HTML = `
-    <header class="nav" id="nav">
-      <a class="wordmark" href="index.html">Atlas Concrete Works</a>
-      <div class="nav-right">
-        <nav class="nav-links">
-          <a href="services.html">Services</a>
-          <a href="projects.html">Projects</a>
-          <a href="process.html">Process</a>
-          <a href="about.html">About</a>
-          <a href="careers.html">Careers</a>
-        </nav>
-        <a class="cta" href="contact.html">Get a quote</a>
-      </div>
-    </header>
-    <div class="nav-spacer"></div>
-  `;
-
-  const FOOTER_HTML = `
-    <section class="cta-band" data-cta-band>
-      <h2>Ready to pour? <span class="slash">Let's get on the schedule.</span></h2>
-      <div class="actions">
-        <a class="cta solid" href="contact.html">Request a quote</a>
-        <a class="cta" href="projects.html" style="border-color:var(--paper);color:var(--paper)">See projects</a>
-      </div>
-    </section>
-    <footer class="site-foot">
-      <div class="wrap">
-        <div class="foot">
-          <div>
-            <a class="wordmark" href="index.html">Atlas Concrete Works</a>
-            <p class="blurb">Cast-in-place foundations, structural walls, and architectural flatwork. One crew from formwork through finish — Bay Area since 1998.</p>
-          </div>
-          <div>
-            <h4>Sitemap</h4>
-            <a href="index.html">Home</a>
-            <a href="services.html">Services</a>
-            <a href="projects.html">Projects</a>
-            <a href="process.html">Process</a>
-            <a href="about.html">About</a>
-            <a href="careers.html">Careers</a>
-            <a href="contact.html">Contact</a>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <a href="tel:+15105550147">(510) 555-0147</a>
-            <a href="mailto:estimates@atlasconcreteworks.example">estimates@<br>atlasconcreteworks.example</a>
-            <p>3120 Industrial Way<br>Oakland, CA 94601</p>
-          </div>
-          <div>
-            <h4>Hours</h4>
-            <p>Mon–Fri · 6:30a–4:30p<br>Sat · by appointment<br>24/7 · emergency pours</p>
-          </div>
-        </div>
-        <div class="foot-bottom">
-          <span>© 2026 Atlas Concrete Works · Fictional sample site</span>
-          <span>CSLB · License C-8 · #000000</span>
-        </div>
-      </div>
-    </footer>
-  `;
-
-  // Only inject if a marker is present — avoids doubling up
-  const navMount = document.querySelector('[data-nav]');
-  if (navMount) navMount.outerHTML = NAV_HTML;
-
-  const footMount = document.querySelector('[data-footer]');
-  if (footMount) {
-    // allow pages to opt out of the CTA band
-    let html = FOOTER_HTML;
-    if (footMount.hasAttribute('data-no-cta')) {
-      html = FOOTER_HTML.replace(/<section class="cta-band"[\s\S]*?<\/section>/, '');
-    }
-    footMount.outerHTML = html;
-  }
-})();
-
-</script>
 <script>
 /* Shared site JS: nav active state, tweaks panel, small interactions */
 (function () {
